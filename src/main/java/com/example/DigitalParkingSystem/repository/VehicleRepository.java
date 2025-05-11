@@ -6,6 +6,5 @@ import com.example.DigitalParkingSystem.entity.Vehicle;
 
 @Repository
 public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
-//    Vehicle findByLicensePlate(String licensePlate);
 }
 

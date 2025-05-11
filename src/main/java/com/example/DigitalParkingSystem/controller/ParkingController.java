@@ -18,94 +18,81 @@ public class ParkingController {
 	@Autowired
 	private ParkingService service;
 
-	
 	// PARKING LOTS
-	//--------------
+	// --------------
 	@PostMapping("/parkingLots")
-	public ResponseEntity<?> createParkingLot(@RequestBody ParkingLot parkingLot){
+	public ResponseEntity<?> createParkingLot(@RequestBody ParkingLot parkingLot) {
 		return service.createParkingLot(parkingLot);
 	}
 
-    @GetMapping("/parkingLots")
-    public ResponseEntity<?> getAllParkingLots() {
-        return service.getAllParkingLots();
+	@GetMapping("/parkingLots")
+	public ResponseEntity<?> getAllParkingLots() {
+		return service.getAllParkingLots();
+	}
+
+	@GetMapping("/parkingLots/{id}")
+	public ResponseEntity<?> getParkingLotById(@PathVariable Long id) {
+		return service.getParkingLotById(id);
+	}
+
+	// FLOORS
+	// --------
+	@PostMapping("/floors")
+	public ResponseEntity<?> addFloor(@RequestBody Floor floor) {
+		return service.addFloor(floor);
+	}
+
+	@GetMapping("/floors")
+	public ResponseEntity<?> getAllFloors() {
+		return service.getAllFloors();
+	}
+
+	// SPOTS
+	// -------
+
+	@PostMapping("/spots")
+	public ResponseEntity<?> addParkingSpot(@RequestBody ParkingSpot parkingSpot) {
+		return service.addParkingSpot(parkingSpot);
+	}
+
+	@GetMapping("/spots/free")
+	public ResponseEntity<?> getAllFreeSpots() {
+		return null;
+	}
+
+	@GetMapping("/spots/free/{type}")
+	public ResponseEntity<?> getFreeSpotsByType(@PathVariable VehicleType type) {
+		return null;
+	}
+
+	// VEHICLES
+	// ----------
+
+	@PostMapping("/vehicles")
+	public ResponseEntity<?> registerVehicle(@RequestBody Vehicle vehicle) {
+		return service.registerVehicle(vehicle);
+	}
+
+	@GetMapping("/vehicles/{vehicleNumber}")
+	public ResponseEntity<?> getVehicleByVehicleNumber(@PathVariable String vehicleNumber) {
+		return null;
+	}
+
+	// Parking operations
+
+	@PostMapping("/park")
+	public ResponseEntity<?> parkVehicle(@RequestBody Vehicle vehicle) {
+		return null;
+	}
+
+
+	@PostMapping("/unpark/{ticketId}")
+	public ResponseEntity<?> unparkVehicle(@PathVariable Long ticketId) {
+		return null;
+	}
+    
+    @GetMapping("/tickets/active")
+    public ResponseEntity<?> getActiveTickets() {
+    	return null;
     }
-    
-    @GetMapping("/parkingLots/{id}")
-    public ResponseEntity<?> getParkingLotById(@PathVariable Long id){
-    	return service.getParkingLotById(id);
-    }
-    
-    // FLOORS
-    //--------
-    @PostMapping("/floors")
-    public ResponseEntity<?> addFloor(@RequestBody Floor floor){
-    	return service.addFloor(floor);
-    }
-    
-    @GetMapping("/floors")
-    public ResponseEntity<?> getAllFloors() {
-        return service.getAllFloors();
-    }
-    
-    // SPOTS
-    //-------
-    
-    @PostMapping("/spots")
-    public ResponseEntity<?> addParkingSpot(@RequestBody ParkingSpot parkingSpot){
-    	return service.addParkingSpot(parkingSpot);
-    }
-    
-//    @GetMapping("/spots/free")
-//    public ResponseEntity<List<ParkingSpot>> getAllFreeSpots() {
-//        return new ResponseEntity<>(service.getAllFreeSpots(), HttpStatus.OK);
-//    }
-//    
-//    @GetMapping("/spots/free/{type}")
-//    public ResponseEntity<List<ParkingSpot>> getFreeSpotsByType(@PathVariable VehicleType type) {
-//        return new ResponseEntity<>(service.getFreeSpotsByType(type), HttpStatus.OK);
-//    }
-    
-    // VEHICLES
-    //----------
-    
-    @PostMapping("/vehicles")
-    public ResponseEntity<?> registerVehicle(@RequestBody Vehicle vehicle) {
-        return service.registerVehicle(vehicle);
-    }
-//    
-//    @GetMapping("/vehicles/{licensePlate}")
-//    public ResponseEntity<Vehicle> getVehicleByLicensePlate(@PathVariable String licensePlate) {
-//        Vehicle vehicle = service.getVehicleByLicensePlate(licensePlate);
-//        if (vehicle == null) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        return new ResponseEntity<>(vehicle, HttpStatus.OK);
-//    }
-//    
-//    // Parking operations
-//    @PostMapping("/park")
-//    public ResponseEntity<Ticket> parkVehicle(@RequestBody Vehicle vehicle) {
-//        try {
-//            Ticket ticket = service.parkVehicle(vehicle);
-//            return new ResponseEntity<>(ticket, HttpStatus.CREATED);
-//        } catch (RuntimeException e) {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
-//    }
-//    
-//    @PostMapping("/unpark/{ticketId}")
-//    public ResponseEntity<Vehicle> unparkVehicle(@PathVariable Long ticketId) {
-//        try {
-//            Vehicle vehicle = service.unparkVehicle(ticketId);
-//            return new ResponseEntity<>(vehicle, HttpStatus.OK);
-//        } catch (RuntimeException e) {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
-//    }
-//    
-//    @GetMapping("/tickets/active")
-//    public ResponseEntity<List<Ticket>> getActiveTickets() {
-//        return new ResponseEntity<>(service.getActiveTickets(), HttpStatus.OK);
-//    }
 }
