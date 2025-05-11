@@ -14,8 +14,19 @@ public class VehicleDao {
     @Autowired
     private VehicleRepository vehicleRepo;
 
-	public Vehicle registerVehicle(Vehicle vehicle) {
-		return vehicleRepo.save(vehicle);
-	}
+    public Vehicle registerVehicle(Vehicle vehicle) {
+        return vehicleRepo.save(vehicle);
+    }
     
+    public Optional<Vehicle> getVehicleById(Long id) {
+        return vehicleRepo.findById(id);
+    }
+    
+    public Optional<Vehicle> getVehicleByVehicleNumber(String vehicleNumber) {
+        return vehicleRepo.findByVehicleNumber(vehicleNumber);
+    }
+    
+    public List<Vehicle> getAllVehicles() {
+        return vehicleRepo.findAll();
+    }
 }

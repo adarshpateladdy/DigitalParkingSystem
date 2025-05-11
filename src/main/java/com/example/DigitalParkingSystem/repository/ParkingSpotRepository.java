@@ -10,4 +10,6 @@ import java.util.List;
 
 @Repository
 public interface ParkingSpotRepository extends JpaRepository<ParkingSpot, Long> {
+    List<ParkingSpot> findByStatus(ParkingSpotStatus status);
+    List<ParkingSpot> findByStatusAndType(ParkingSpotStatus status, VehicleType type);
 }
